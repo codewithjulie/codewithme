@@ -1,0 +1,14 @@
+<% provide(:title, "Submit Assignment") %>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= link_to 'Back to Assignment', course_assignment_path(@course, @assignment), class: "btn btn-info mb-4" %>
+      <h1>Submit Assignment for <%= @assignment.name %></h1>
+      <%= render 'shared/error_messages', obj: @submission %>
+      <div>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<% provide(:title, "Submissions") %>
+<div class="container col-8 my-5">
+  <%= link_to 'Back to All Assignments', course_assignments_path(@course), class: "btn btn-info mb-4" %>
+  <h1>All submissions!</h1>
+  <div class="container">
+
+  <div class="my-3">
+  <%= form_tag(user_course_submissions_path(@course), method: :get) do %>
+    <%= label_tag "Search by users: " %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag "Search" %>
+    <%= link_to 'Clear Search', user_course_submissions_path(@course) %>
+  <% end %>
+  </div>
+
+  <h2 class="mt-4">User Submissions</h2>
+  <div>
+  <table class='table mb-5'>
+    <thead>
+      <tr>
+        <th scope="col">#</td>
+        <th scope="col">Assignment</td>
+        <th scope="col">First Name</td>
+        <th scope="col">Last Name</td>
+        <th scope="col">Username</td>
+
+      </tr>
+    </thead>
+    <tbody>
+    <% if !@submissions.empty? %>
+      <% @submissions.each_with_index do |submission, i| %>
+        <% assignment = Assignment.find_by(id: submission.assignment_id) %>
+        <% user = User.find_by(id: submission.user_id) %>
+        
+        <% if user %>
+          <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td><%= link_to assignment.name, course_assignment_submission_path(@course, assignment, submission) %></td>
+            <td><%= User.find_by(id: submission.user_id).first_name %></td>
+            <td><%= User.find_by(id: submission.user_id).last_name %></td>
+            <td><%= User.find_by(id: submission.user_id).username %></td>
+          </tr>
+        <% else %>
+          <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td><%= link_to assignment.name, course_assignment_submission_path(@course, assignment, submission) %></td>
+            <td>User</td>
+            <td>Deleted</td>
+            <td>Account</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+    </table>
+    <% else %>
+      No Submissions Yet!
+    <% end %>
+  </div>
+  </div>
+</div>
+
+

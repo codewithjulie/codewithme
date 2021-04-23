@@ -1,0 +1,2 @@
+module MicroBlogsHelper
+end

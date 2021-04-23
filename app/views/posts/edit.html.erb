@@ -1,0 +1,10 @@
+<div>
+  <%= form_for [@forum, @post] do |f| %>
+    <div>
+      <%= f.text_field :body, autofocus: true, class: "form-control"%>
+    </div>
+    <div>
+      <%= f.submit class: "d-none"%>
+    </div>
+  <% end %>
+</div>

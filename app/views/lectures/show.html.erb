@@ -1,0 +1,33 @@
+<% provide(:title, @lecture.name) %>
+
+<div class="container col-8 my-5">
+
+  <div>
+    <%= link_to 'All Lectures', course_lectures_path(@course), class: "btn btn-info mb-4" %>
+  </div>
+
+  <h1 class="mb-5"><%= @lecture.name %></h1>
+
+  <div class="container">
+    
+    <% unless @lecture.url.empty? %>
+      <div>
+        <iframe width="800" height="500" src='https://www.youtube.com/embed/<%= @video_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+      </div>
+    <% end %>
+    
+    <div class="mt-5">
+      <%= @lecture.description %>
+    </div>
+  </div>
+
+  <% if current_user && current_user.admin %>
+    <div class="my-4">
+      <div class="d-inline pr-2">
+        <%= link_to 'Edit Lecture', edit_course_lecture_path(@course, @lecture), class: "btn btn-warning"%>
+      </div>
+      <%= render 'layouts/delete', object: {name: "Delete Lecture", path: course_lecture_path(@course, @lecture)} %>
+    </div>
+  <% end %>
+  
+</div>

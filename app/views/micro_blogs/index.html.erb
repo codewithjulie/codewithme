@@ -1,0 +1,22 @@
+<% provide(:title, "Micro Blog") %>
+
+<div class="container col-8 my-5">
+
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Add Entry', new_micro_blog_path, class: "btn btn-primary mb-4" %>
+  <% end %>
+
+  <h1>Julie Writes</h1>
+
+  <div class="my-3">
+    <% @micro_blogs.each do |micro_blog| %>
+      <h3 class="mb-3"><%= link_to micro_blog.title, micro_blog_path(micro_blog) %></h3>
+      <h6 class="fw-lighter"><%= micro_blog.created_at.to_date.to_formatted_s(:long) %></h6>
+      <%= simple_format(micro_blog.content.first(300).gsub(/\\n/, "\n") + " ...") %>
+      
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+  <%= paginate @micro_blogs %>
+  </div>
+</div>

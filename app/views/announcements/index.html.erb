@@ -1,0 +1,26 @@
+<% provide(:title, "Announcements") %>
+<div class="container col-8 my-5">
+
+  <% if current_user && current_user.admin? %>
+    <%= link_to 'Add New Announcement', new_course_announcement_path(@course), class: "btn btn-primary mb-4" %>
+  <% end %>
+  
+  <h1>Announcements!</h1>
+    <div class="my-3">
+    
+    <% if !@announcements.empty? %>
+        <% @announcements.each do |announcement|%>
+        <div>
+          <h3> <%= link_to announcement.title, course_announcement_path(@course, announcement) %></h3>
+          <h6 class="fw-lighter"><%= announcement.created_at.to_date.to_formatted_s(:long) %></h6>
+          <%= simple_format(announcement.body.first(300).gsub(/\\n/, "\n") + " ...") %>
+        </div>
+      <% end%>
+    <% else %>
+      <div>Stay tuned for an announcement</div>
+    <% end %>
+    <div class="mt-5 d-flex justify-content-center">
+      <%= paginate @announcements %>
+    </div>
+  </div>
+</div>

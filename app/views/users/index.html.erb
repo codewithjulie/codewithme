@@ -1,0 +1,42 @@
+<% provide(:title, "All Users") %>
+
+<div class="container col-8 my-5">
+  <%= link_to 'All Courses', courses_path, class: "btn btn-info mb-4" %>
+
+  <h1>All Users</h1>
+  <div class="my-3">
+    <%= form_tag(users_path, method: :get) do %>
+      <%= label_tag "Search for users: " %>
+      <%= text_field_tag(:search, params[:search]) %>
+      <%= submit_tag "Search" %>
+      <%= link_to 'Clear Search', users_path %>
+
+    <% end %>
+  </div>
+  <table class="table mb-5">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>User ID</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <% @users.each_with_index do |user, i| %>
+
+          <th><%= i + 1 %></th>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.id %></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+

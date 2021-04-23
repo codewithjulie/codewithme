@@ -1,0 +1,41 @@
+<% provide(:title, @assignment.name) %>
+
+<div class="container col-8 my-5">
+  <div>
+    <%= link_to 'All Assignments', course_assignments_path(@course), class: "btn btn-info mb-4"%>
+  </div>
+
+  <h1><%=@assignment.name%></h1>
+
+  <div>
+  
+  <% if @assignment.content %>
+    <%= simple_format(@assignment.content.gsub(/\\n/, "\n")) %>
+    <div class="my-3"><%= link_to 'Outside Link', @assignment.url %></div>
+  <% else %>
+    No Assignment yet
+  <% end %>
+  
+  </div>
+  <% if current_user && current_user.admin %>
+    <div class="my-4">
+      <div class="d-inline pr-2">
+        <%= link_to 'Edit Assignment', edit_course_assignment_path(@course, @assignment), class: "btn btn-warning"%>
+      </div>
+      <%= render 'layouts/delete', object: {name: "Delete Assignment", path: course_assignment_path(@course, @assignment)} %>
+    </div>
+  <% end %>  
+  <div>
+    
+    <% if current_user && current_user.enrolled?(@course) && @submission.nil?%>
+      <%= link_to 'Submit Assignment', new_course_assignment_submission_path(@course, @assignment), class: "btn btn-primary" %>
+    <% end %>
+    
+    
+    <% if @submission %>
+      <%= link_to 'View Submission', course_assignment_submission_path(@course, @assignment, @submission), class: "btn btn-info" %>
+    <% end %>
+    
+  </div>
+
+</div>

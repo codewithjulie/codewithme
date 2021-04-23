@@ -1,0 +1,13 @@
+<% provide(:title, "Edit Submission") %>
+
+<div class="container my-5">
+  <div class="row g-3">
+    <div class="col-4 mx-auto">
+      <%= link_to 'Back to Assignment', course_assignment_path(@course, @assignment), class: "btn btn-info mb-4" %>
+      <h1>Edit Submission For <%= @assignment.name %></h1>
+      <div>
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+</div>

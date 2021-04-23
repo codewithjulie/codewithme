@@ -1,0 +1,23 @@
+<% provide(:title, "Submissions") %>
+<div class="container col-8 my-5">
+  <h1>All submissions!</h1>
+  <div class="container">
+
+    <% if !@submissions.empty? %>
+      <% @submissions.each do |submission| %>
+        <% assignment = Assignment.find_by(id: submission.assignment_id) %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <%= link_to assignment.name, course_assignment_submission_path(@course, assignment, submission) %> submitted on <%= submission.updated_at.to_date.to_formatted_s(:long) %>
+            
+            <% if current_user.admin%>
+              submitted by <%= User.find_by(id: submission.user_id).username%>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    <% else %>
+      No Submissions Yet!
+    <% end %>
+  </div>
+</div>

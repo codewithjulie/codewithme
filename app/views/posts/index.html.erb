@@ -1,0 +1,5 @@
+    <div class="messages" id="forum_id" data-forum-id=<%= @forum.id %>>
+      <% @posts.each do |post|%>
+        <%= render 'post', post: post %>
+      <% end %>
+    </div>

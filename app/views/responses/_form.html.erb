@@ -1,0 +1,10 @@
+<div>
+  <%= form_for [@forum, @post, @response] do |f| %>
+    <div class="mb-3">
+      <%= f.text_field :body, class: "form-control", :autofocus => true, placeholder: "Enter reply"%>
+    </div>
+    <div>
+      <%= f.submit class: "d-none"%>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<% provide(:title, @micro_blog.title) %>
+
+<div class="container col-8 my-5">
+  <%= link_to 'Back to Micro Blog', micro_blogs_path, class: "btn btn-info mb-4" %>
+  <% if current_user && current_user.admin %>
+    <div class="mb-4">
+      <div class="d-inline pr-2">
+        <%= link_to 'Edit', edit_micro_blog_path(@micro_blog), class: "btn btn-warning" %>
+      </div>
+      <%= render 'layouts/delete', object: {name: "Delete Entry", path: micro_blog_path(@micro_blog)} %>
+    </div>
+  <% end %>
+
+  <h1><%= @micro_blog.title %></h1>
+  <h6 class="fw-lighter"><%= @micro_blog.created_at.to_date.to_formatted_s(:long) %></h6>
+
+  <div>
+    <%= simple_format(@micro_blog.content.gsub(/\\n/, "\n")) %>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <div><%= link_to 'Previous', @micro_blog.previous, class: "btn btn-info" %></div>
+    <div><%= link_to 'Next', @micro_blog.next, class: "btn btn-info" %></div>
+  </div>
+
+</div>

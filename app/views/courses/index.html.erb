@@ -1,0 +1,85 @@
+<% provide(:title, "Courses") %>
+
+<div class="container col-8 my-5">
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Add Course', new_course_path, class: "btn btn-primary mb-4" %>
+  <% end %>
+  
+  
+  <% if current_user && current_user.admin %>
+    <h1>courses</h1>
+  <% else %>
+    <h1>enroll in new courses</h1>
+  <% end %>
+  
+
+  
+  <% unless current_user %>
+    <div class="fs-4 my-3">Log in to enroll in courses</div>
+  <% end %>
+  
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-3">
+    <% @courses.each do |course| %>
+      <div class="col">
+        <div class="card">
+          <%= image_tag course.image_url, class: "card-img-top", alt: course.title %>
+          <div class="card-body">
+            <div><h5 class="card-title"><%= course.title %></h5>
+            <p class="card-text"><%= course.short_description %></p></div>
+            <div><%= link_to "More Info", course_path(course), class: "btn btn-info" %>
+            
+            <% if current_user && !current_user.enrolled?(course) && !current_user.pending_enrollment?(course) && !current_user.admin %>
+              <%= link_to 'Enroll', user_courses_path(user_id: current_user.id, course_id: course.id), method: "post", class: "ml-3 btn btn-primary"%>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  
+  <% if current_user && !current_user.admin %>
+    <% if !@courses_enrolled.empty? %>
+      <h2 class="mt-5">courses enrolled</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4 my-3">
+        <% @courses_enrolled.each do |course| %>
+          <div class="col">
+            <div class="card">
+              <%= image_tag course.image_url, class: "card-img-top", alt: course.title %>
+              <div class="card-body">
+                <div><h5 class="card-title"><%= course.title %></h5>
+                <p class="card-text"><%= course.short_description %></p></div>
+                <div><%= link_to "More Info", course_path(course), class: "btn btn-info" %>
+              
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <% if !@courses_pending.empty? %>
+      <h2 class="mt-5">courses pending enrollment</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4 my-3">
+    
+      <% @courses_pending.each do |course| %>
+        <div class="col">
+          <div class="card">
+            <%= image_tag course.image_url, class: "card-img-top", alt: course.title %>
+            <div class="card-body">
+              <div><h5 class="card-title"><%= course.title %></h5>
+              <p class="card-text"><%= course.short_description %></p></div>
+              <div><%= link_to "More Info", course_path(course), class: "btn btn-info" %>
+            
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+</div>

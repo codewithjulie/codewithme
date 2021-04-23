@@ -1,0 +1,15 @@
+<% provide(:title, "Edit Announcement") %>
+
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= link_to "Back to announcement: #{@announcement.title}", course_announcement_path(@course, @announcement), class: "btn btn-info mb-4"%>
+
+      <h1>Edit Announcement</h1>
+      <div>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>

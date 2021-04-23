@@ -1,0 +1,50 @@
+<div class="message-author">
+  <strong><%= post.author %></strong>
+</div>
+<div class="post-message-box row">
+  <div>
+    <div class="message"><%= post.body %></div>
+  </div>
+  <div class="post-functions">
+    <div class="blue">
+    <% if post.author == current_user.username%>
+      <div class="edit" data-forum-id = "<%= post.forum_id %>" data-post-id = "<%= post.id %>">Edit</div>
+    <% end %>
+    </div>
+    <div>
+    <% if post.author == current_user.username || current_user.admin %>
+      <%= link_to 'Delete', forum_post_path(@forum, post), method: :delete, class: "delete" %>
+    <% end %>
+    </div>
+    <div class="blue">
+      <div class="reply" data-forum-id = "<%= post.forum_id %>" data-post-id = "<%= post.id %>">Reply</div>
+    </div>
+  </div>
+</div>
+<div class="reply-box"></div>
+
+<div>
+  <% post.responses.each do |response| %>
+    <div class="response-author">
+      <strong>&emsp;<%= response.author %></strong>
+    </div>
+    <div class="post-message-box row">
+      <div>
+        <div class="response">&emsp;<%= response.body%></div>
+      </div>
+      <div class="post-functions">
+        <div class="blue">
+          <% if response.author == current_user.username%>
+            <span class="edit" data-forum-id = "<%= post.forum_id %>" data-post-id = "<%= post.id %>", data-response-id = "<%= response.id %>">Edit</span>
+          <% end %>
+        
+          <% if response.author == current_user.username || current_user.admin %>
+            <%= link_to 'Delete', forum_post_response_path(@forum, post, response), method: :delete, class: "delete" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+<div class="form-for-response" data-forum-id="<%= @forum.id %>" data-post-id="<%= post.id %>"></div>

@@ -1,0 +1,34 @@
+<% provide(:title, "Contact Me") %>
+<div class="container my-5">
+  <div class="row g-3">
+    <div class="col-5 mx-auto">
+      <h1>Contact Me</h1>
+        <p>Questions or comments? Fill out the form below.</p>
+
+        <%= render 'shared/error_messages', obj: @contact %>
+
+        <%= form_for @contact do |f| %>
+          <div class="mb-3">
+            <%= f.label :first_name, class: "form-label" %>
+            <%= f.text_field :first_name, class: "form-control"%>
+          </div>
+          <div class="mb-3">
+            <%= f.label :last_name, class: "form-label" %>
+            <%= f.text_field :last_name, class: "form-control"%>
+          </div>
+          <div class="mb-3">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%=f.label :message, class: "form-label"%>
+            <%= f.text_area :message, :cols => 30, :rows => 5, class: "form-control" %>
+          </div>
+          <div><%= f.submit "Send", class: "btn btn-primary" %></div>
+        <% end %>
+      </div>
+    </div>
+      
+  </div>
+
+</div>

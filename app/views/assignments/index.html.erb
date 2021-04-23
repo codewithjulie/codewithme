@@ -1,0 +1,39 @@
+<% provide(:title, "Assignments") %>
+
+<div class="container col-8 my-5">
+  <% if current_user && current_user.admin %>
+    <div class="d-inline">
+      <%= link_to 'Add New Assignment', new_course_assignment_path(@course), class: "btn btn-primary mb-4 mr-3" %>
+    </div>
+    <div class="d-inline">
+      <%= link_to 'View All Submissions', "/courses/#{@course.id}/submissions-admin", class: "btn btn-info mb-4"%>
+    </div>
+  <% end %>
+
+  <h1>Assignments</h1>
+  <div class="container">
+
+
+      <% if @assignments.empty? %>
+        Assignments coming soon
+      <% else %>
+        <div class="col-5 justify-content-center">
+          <% @assignments.each do |assignment| %>
+            <ul class="list-group list-group-horizontal list-group-flush">
+              <li class="list-group-item list-group-item-action">
+                <%= link_to assignment.name, course_assignment_path(@course, assignment) %>
+              </li>
+              <li class="list-group-item list-group-item-action">
+                <% if !assignment.url.empty? %>
+                  <%= link_to "Outside Link", assignment.url, target: :_blank %>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      <% end %>
+    
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,13 @@
+<% provide(:title, "New Lecture") %>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= link_to 'Back to All Lectures', course_lectures_path(@course), class: "btn btn-info mb-4" %>
+      <h1>Create a New Lecture</h1>
+      <div>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>
+</div>

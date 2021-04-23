@@ -1,0 +1,45 @@
+<% provide(:title, "About This Site") %>
+
+<div class="container col-8 my-5">
+  <h1>About This Site</h1>
+
+  <p>This <span class="strike-through">web application</span> monstrosity is my final project for <%= link_to "All Aboard Bootcamp", "https://github.com/All-Aboard-Bootcamp", target: :_blank %> lead by <%= link_to 'John Crepezzi', "https://twitter.com/seejohnrun", target: :_blank %>.</p>
+
+  <p>Feeling discouraged because friends were rejected from paid bootcamps for not passing the screener, John went on a mission to increase diversity in tech by creating his own bootcamp to help those in under-represented groups out of work due to COVID exploring positions in tech.</p>
+
+  <p>John is an amazing instructor who can break down complex concepts so that even a five year old can understand. He is also an amazing mentor who spends extra time answering ALL questions and providing feedback for our work. John puts 110% and more into all of us and I can return the favor by putting in 110% and more in the class.</p>
+
+  <p>I would also like to give a special thanks to Kate Crepezzi, thank you for letting us have John for 7 weeks. Without your support and understanding, this would not be possible for all of us at <%= link_to "All Aboard Bootcamp", "https://github.com/All-Aboard-Bootcamp", target: :_blank %>!</p>
+
+  <div class="mt-3">This is an education platform where authorized users can access their course materials all in one place.</div>
+
+  <div class="mt-3">
+    As of Friday April 16th features include:
+    <ul>
+      <li>Users can register, view and edit their profile, delete their account, login, and log out</li>
+      <li>Users can request to enroll in multiple courses</li>
+      <li>Admins can enroll and unenroll users</li>
+      <li>Enrolled users can view course materials and submit assignments</li>
+      <li>Course materials include assignments, lectures, announcements, and forum.</li>
+      <li>Admins can create, edit, view, or delete any course materials</li>
+      <li>Admins can do a simple search in submissions for a course and all users</li>
+      <li>The forum can have multiple channels and functions similarly to a basic slack/discord with ability to reply to posts</li>
+      <li>New posts are refreshed using Action Cable and edits/replies are refreshed manually</li>
+      <li>All messages have full CRUD functions for original author and admins can delete any messages</li>
+      <li>Micro Blog includes my thoughts while attending All Aboard Bootcamp</li>
+      <li>Video walkthrough of this site: <%= link_to 'All Aboard Bootcamp Final Project Walkthrough', "https://youtu.be/ZQFei6xD3-s" %></li>
+    </ul>
+
+    Future Improvements:
+    <ul>
+      <li>Continue to refactor code and add tests in all areas</li>
+      <li>Use Action Cable for all messages including edits, deletes, and replies</li>
+      <li>Add gamification component that will help motivate users to complete a course</li>
+      <li>Limit admins to specific courses and create a third role, owner, who has access to everything</li>
+      <li>Fix account verification using e-mail and add password reset functionality</li>
+      <li>Make the app responsive</li>
+      <li>Create quizzes?</li>
+    </ul>
+  </div>
+</div>
+

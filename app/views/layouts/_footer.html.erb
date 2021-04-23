@@ -1,0 +1,25 @@
+<footer class="footer mt-auto py-3 navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'codewithjulie 2021', :root, class: "nav-link"%>
+        </li>
+      </ul>
+      <ul class="navbar-nav d-flex">
+        <li class="nav-item mx-3">
+          <%= link_to 'Micro Blog', micro_blogs_path, class: "nav-link" %>
+        </li> 
+        <li class="nav-item mx-3">
+          <%= link_to 'About Me', :about, class: "nav-link" %>
+        </li>
+        <li class="nav-item mx-3">
+          <%= link_to 'About Site', :about_site, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Contact', new_contact_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
