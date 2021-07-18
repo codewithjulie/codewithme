@@ -57,14 +57,26 @@ class UsersController < ApplicationController
     end
   end
 
+
+
+
+
+
   def destroy
     @user = current_user
+    binding.pry
     @user.destroy
     log_out
     flash[:success] = "You have sucessfully deleted your account"
     redirect_to :root
   end
 
+
+
+
+
+
+  
   def submissions
     if current_user.admin
       @submissions = Submission.all
