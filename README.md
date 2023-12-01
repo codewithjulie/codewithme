@@ -1,6 +1,6 @@
 # Welcome to my All Aboard Bootcamp Final Project
 
-An education platform where enrolled users can enroll in multiple courses and access their course materials all in one place. Live now at [Heroku](https://codewithjulie.herokuapp.com)
+An education platform where enrolled users can enroll in multiple courses and access their course materials all in one place.
 
 Video walkthrough of this app available on [YouTube](https://youtu.be/ZQFei6xD3-s).
 
